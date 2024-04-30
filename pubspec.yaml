@@ -1,0 +1,46 @@
+name: luvit
+description: "A new Flutter project."
+
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.3.3 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^1.0.8
+  cached_network_image: ^3.3.1
+  carousel_slider: ^4.2.1
+  connectivity_plus: ^6.0.3
+  dartz: ^0.10.1
+  equatable: ^2.0.5
+  firebase_core: ^2.30.1
+  flutter_screenutil: ^5.9.0
+  get: ^4.6.6
+  get_storage: ^2.1.1
+
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^3.0.0
+
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/images/
+    - assets/icons/
+    - assets/flags/
+    - assets/flags/flags_high/
+
+  fonts:
+    - family: Pretendard
+      fonts:
+        - asset: assets/fonts/Pretendard.ttf
