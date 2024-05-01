@@ -2,11 +2,11 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:firebase_database/firebase_database.dart';
-import 'package:get_storage/get_storage.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:luvit/feature/home/data/model/card_model.dart';
 
 abstract class HomeRemoteDataSource {
-  Stream<List<CardModel>> getCardList();
+  Stream<List<CardDataModel>> getCardList();
 }
 
 class HomeRemoteDataSourceImpl extends HomeRemoteDataSource {
@@ -26,11 +26,31 @@ class HomeRemoteDataSourceImpl extends HomeRemoteDataSource {
   }
 
   @override
-  Stream<List<CardModel>> getCardList() {
+  Stream<List<CardDataModel>> getCardList() {
+    /*return getCardData().onValue.map((event) {
+      if (event.snapshot.value != null) {
+        final Map<String, dynamic> data = event.snapshot.value;
+        return data.entries
+            .map((entry) => CardDataModel.fromJson(entry.value))
+            .toList();
+      } else {
+        return <CardDataModel>[];
+      }
+    });*/
+
     return FirebaseDatabase.instance.ref().onValue.map(
-          (event) => event.snapshot.children
-              .map((e) => CardModel.fromJson(e.value as Map<String, dynamic>))
-              .toList(),
-        );
+      (event) {
+        final cardModels = <CardDataModel>[];
+        for (var i = 0; i < event.snapshot.children.toList().length; i++) {
+          cardModels.addAll(
+            parseMapFruitsToList(
+              jsonEncode(event.snapshot.children.toList()[i].value),
+            ),
+          );
+        }
+        debugPrint("getCardList -> ${cardModels.length}");
+        return cardModels;
+      },
+    );
   }
 }

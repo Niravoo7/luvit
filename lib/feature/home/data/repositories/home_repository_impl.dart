@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:luvit/core/error/exceptions.dart';
 import 'package:luvit/core/error/failure.dart';
@@ -6,6 +7,7 @@ import 'package:luvit/core/shared/presentation/controller/check_internet_control
 import 'package:luvit/core/utils/generic_typedefs.dart';
 import 'package:luvit/feature/home/data/datasources/home_remote_datasource.dart';
 import 'package:luvit/feature/home/data/model/card_model.dart';
+import 'package:luvit/feature/home/domain/entity/card.dart';
 import 'package:luvit/feature/home/domain/repositories/home_repository.dart';
 
 class HomeRepositoryImpl implements HomeRepository {
@@ -15,7 +17,7 @@ class HomeRepositoryImpl implements HomeRepository {
   final checkInternetController = Get.find<CheckInternetController>();
 
   @override
-  EitherDynamic<Stream<List<CardModel>>> getCardList() async{
+  EitherDynamic<Stream<List<CardData>>> getCardList() async {
     if (checkInternetController.isConnected.value) {
       try {
         final data = homeRemoteDataSource.getCardList();
@@ -23,6 +25,7 @@ class HomeRepositoryImpl implements HomeRepository {
         if (await data.isEmpty) {
           return Left(GeneralFailure(error: "Goals are not exist"));
         } else {
+          debugPrint("HomeRepositoryImpl -> $data");
           return Right(data);
         }
         return Right(data);

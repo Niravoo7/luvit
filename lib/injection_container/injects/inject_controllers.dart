@@ -15,7 +15,9 @@ class InjectableControllers {
         fenix: true,
       )
       ..lazyPut<HomeController>(
-        HomeController.new,
+        () => HomeController(
+          getCardUC: Get.find(),
+        ),
         fenix: true,
       );
   }

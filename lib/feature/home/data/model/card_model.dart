@@ -2,15 +2,15 @@ import 'dart:convert';
 
 import 'package:luvit/feature/home/domain/entity/card.dart';
 
-List<CardModel> cardModelsFromJson(String str) =>
-    List<CardModel>.from(json.decode(str).map((x) => CardModel.fromJson(x)));
+List<CardDataModel> cardDataModelsFromJson(String str) =>
+    List<CardDataModel>.from(json.decode(str).map((x) => CardDataModel.fromJson(x)));
 
-CardModel cardModelFromJson(String str) => CardModel.fromJson(json.decode(str));
+CardDataModel cardDataModelFromJson(String str) => CardDataModel.fromJson(json.decode(str));
 
-String cardModelToJson(CardModel data) => json.encode(data.toJson());
+String cardDataModelToJson(CardDataModel data) => json.encode(data.toJson());
 
-class CardModel extends Card {
-  const CardModel({
+class CardDataModel extends CardData {
+  const CardDataModel({
     super.images,
     super.name,
     super.description,
@@ -20,7 +20,7 @@ class CardModel extends Card {
     super.tags,
   });
 
-  factory CardModel.fromJson(Map<String, dynamic> json) => CardModel(
+  factory CardDataModel.fromJson(Map<String, dynamic> json) => CardDataModel(
         images: json["images"] == null
             ? []
             : List<String>.from(json["images"]!.map((x) => x)),
@@ -46,14 +46,14 @@ class CardModel extends Card {
       };
 }
 
-List<CardModel> parseMapFruitsToList(String jsonStr) {
+List<CardDataModel> parseMapFruitsToList(String jsonStr) {
   final Map<String, dynamic> data = jsonDecode(jsonStr);
-  final cardModels = <CardModel>[];
+  final cardDataModels = <CardDataModel>[];
 
   data.forEach((key, value) {
-    final fruit = CardModel.fromJson(value);
-    cardModels.add(fruit);
+    final fruit = CardDataModel.fromJson(value);
+    cardDataModels.add(fruit);
   });
 
-  return cardModels;
+  return cardDataModels;
 }

@@ -15,7 +15,7 @@ class DashboardPage extends StatelessWidget {
   final dashboardController = Get.find<DashboardController>();
 
   static final List<Widget> _selectedTab = <Widget>[
-    const HomePage(),
+    HomePage(),
     const SpotPage(),
     const ChatPage(),
     const ProfilePage(),
@@ -73,6 +73,9 @@ class DashboardPage extends StatelessWidget {
                 borderRadius: const BorderRadius.only(
                   topLeft: Radius.circular(15),
                   topRight: Radius.circular(15),
+                ),
+                border: const Border(
+                  top: BorderSide(color: ThemeColors.clrBluishGray),
                 ),
                 color: Get.isDarkMode
                     ? ThemeColors.clrBlack
@@ -167,31 +170,3 @@ List<FABBottomAppBarItem> itemList = [
     text: StringConstants.strProfile,
   ),
 ];
-
-Widget bottomItem({
-  required bool isActive,
-  required int index,
-}) {
-  return Column(
-    mainAxisAlignment: MainAxisAlignment.center,
-    children: [
-      Image.asset(
-        itemList[index].iconImage,
-        height: 24,
-        width: 24,
-        color: isActive ? ThemeColors.tabSelectedColor : ThemeColors.clrGrey50,
-      ),
-      const SizedBox(
-        height: 0,
-      ),
-      Text(
-        itemList[index].text.tr,
-        overflow: TextOverflow.ellipsis,
-        style: TextStyle(
-          color:
-              isActive ? ThemeColors.tabSelectedColor : ThemeColors.clrGrey50,
-        ),
-      ),
-    ],
-  );
-}
