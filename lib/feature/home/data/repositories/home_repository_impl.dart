@@ -6,7 +6,6 @@ import 'package:luvit/core/error/failure.dart';
 import 'package:luvit/core/shared/presentation/controller/check_internet_controller.dart';
 import 'package:luvit/core/utils/generic_typedefs.dart';
 import 'package:luvit/feature/home/data/datasources/home_remote_datasource.dart';
-import 'package:luvit/feature/home/data/model/card_model.dart';
 import 'package:luvit/feature/home/domain/entity/card.dart';
 import 'package:luvit/feature/home/domain/repositories/home_repository.dart';
 
@@ -28,7 +27,6 @@ class HomeRepositoryImpl implements HomeRepository {
           debugPrint("HomeRepositoryImpl -> $data");
           return Right(data);
         }
-        return Right(data);
       } on ServerException catch (e) {
         return Left(ServerFailure(error: e.error));
       }
