@@ -1,7 +1,5 @@
-
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:luvit/core/local_db/get_storage_db.dart';
 import 'package:luvit/core/services/api_client.dart';
@@ -13,22 +11,14 @@ import 'package:luvit/injection_container/injects/inject_datasources.dart';
 import 'package:luvit/injection_container/injects/inject_repositories.dart';
 import 'package:luvit/injection_container/injects/inject_usecases.dart';
 
-
 Future<void> init() async {
-
-
   Get.lazyPut<SplashController>(SplashController.new, fenix: true);
   final localCache = LocalCache();
 
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
-
-
   await localCache.getStorageInit();
-  await SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
-
-
 
   /// services
   Get

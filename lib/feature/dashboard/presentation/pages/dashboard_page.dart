@@ -1,4 +1,3 @@
-import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:luvit/core/constants/image_constants.dart';
@@ -24,7 +23,6 @@ class DashboardPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final keyboardIsOpen = MediaQuery.of(context).viewInsets.bottom != 0;
     return Scaffold(
       body: SafeArea(
         child: Column(
@@ -41,43 +39,103 @@ class DashboardPage extends StatelessWidget {
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: Theme(
+      floatingActionButton: FloatingActionButton(
+        backgroundColor:
+            Get.isDarkMode ? const Color(0xff333131) : ThemeColors.clrGrey50,
+        elevation: 0,
+        onPressed: () => debugPrint("Add Button pressed"),
+        shape: RoundedRectangleBorder(
+          side: BorderSide(
+            width: 3,
+            color: Get.isDarkMode ? ThemeColors.clrBlack : ThemeColors.clrWhite,
+          ),
+          borderRadius: BorderRadius.circular(100),
+        ),
+        child: Image.asset(
+          IconConstants.icStar,
+          height: 24,
+          color: Get.isDarkMode ? ThemeColors.clrBlack : ThemeColors.clrWhite,
+        ),
+      ),
+      bottomNavigationBar: Theme(
         data: ThemeData(useMaterial3: false),
-        child: Visibility(
-          visible: !keyboardIsOpen,
-          child: FloatingActionButton(
-            onPressed: () {
-              //Get.toNamed(AppRoutes.addDream);
-            },
-            backgroundColor: Get.isDarkMode
-                ? const Color(0xff333131)
-                : ThemeColors.clrGrey50,
-            child: Image.asset(
-              IconConstants.icStar,
-              height: 24,
+        child: BottomAppBar(
+          color: Theme.of(context).scaffoldBackgroundColor,
+          elevation: 0,
+          child: ClipRRect(
+            borderRadius: const BorderRadius.only(
+              topLeft: Radius.circular(15),
+              topRight: Radius.circular(15),
+            ),
+            child: Container(
+              height: 60,
+              decoration: BoxDecoration(
+                borderRadius: const BorderRadius.only(
+                  topLeft: Radius.circular(15),
+                  topRight: Radius.circular(15),
+                ),
+                color: Get.isDarkMode
+                    ? ThemeColors.clrBlack
+                    : ThemeColors.clrWhite,
+              ),
+              child: Obx(
+                () => Row(
+                  children: List.generate(
+                    itemList.length,
+                    (index) => navItem(
+                      itemList[index].iconImage,
+                      dashboardController.tabIndex.value == index,
+                      text: itemList[index].text,
+                      onTap: () => onTap(index),
+                    ),
+                  ),
+                ),
+              ),
             ),
           ),
         ),
       ),
-      bottomNavigationBar: Obx(
-        () => AnimatedBottomNavigationBar.builder(
-          itemCount: 4,
-          tabBuilder: (index, isActive) {
-            return bottomItem(index: index, isActive: isActive);
-          },
-          splashRadius: 0,
-          splashSpeedInMilliseconds: 0,
-          activeIndex: dashboardController.tabIndex.value,
-          backgroundColor:
-              Get.isDarkMode ? ThemeColors.clrBlack : ThemeColors.clrWhite,
-          height: 60,
-          gapLocation: GapLocation.center,
-          notchSmoothness: NotchSmoothness.defaultEdge,
-          onTap: (index) {
-            dashboardController.tabIndex.value = index;
-            dashboardController.tabIndex.refresh();
-          },
-          //other params
+    );
+  }
+
+  Future<void> onTap(int index) async {
+    dashboardController.tabIndex.value = index;
+  }
+
+  Widget navItem(
+    String icon,
+    bool selected, {
+    required String text,
+    Function()? onTap,
+  }) {
+    return Expanded(
+      child: InkWell(
+        onTap: onTap,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Image.asset(
+              icon,
+              height: 24,
+              width: 24,
+              color: selected
+                  ? ThemeColors.tabSelectedColor
+                  : ThemeColors.clrGrey50,
+            ),
+            const SizedBox(
+              height: 0,
+            ),
+            Text(
+              text.tr,
+              overflow: TextOverflow.ellipsis,
+              style: TextStyle(
+                fontSize: 12,
+                color: selected
+                    ? ThemeColors.tabSelectedColor
+                    : ThemeColors.clrGrey50,
+              ),
+            ),
+          ],
         ),
       ),
     );

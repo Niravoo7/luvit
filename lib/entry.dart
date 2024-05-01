@@ -26,6 +26,7 @@ class _EntryState extends State<Entry> {
 
     localCache = Get.find<LocalCache>();
     isDarkMode = localCache.getBool(Preferences.isDarkMode);
+    isDarkMode = true;
   }
 
   Locale? getDeviceLocal() {
