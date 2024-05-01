@@ -8,6 +8,7 @@ class ThemeColors {
   static const Color clrBlack400 = Color(0xFF101717);
   static const Color clrAccentBlack = Color(0xFF1A1639);
   static const Color accentColor = Color(0xFF2C71ED);
+  static const Color tabSelectedColor = Color(0xFFFF016B);
   static const Color primaryColor = Color(0xFFABC6F8);
   static const Color secondColor = Color(0xFF748299);
   static const Color second50Color = Color(0xFFCCDEFF);
@@ -25,8 +26,6 @@ class ThemeColors {
   static const Color clrGrey200 = Color(0xFFF9F9F9);
   static const Color clrGrey300 = Color(0xFFF3F3F3);
   static const Color clrLightShadowGrey = Color(0xFFEAEAEA);
-  static Color clrGreyShade100 = Colors.grey.shade100;
-  static Color clrGreyShade300 = Colors.grey.shade300;
   static const Color clrTransparent = Color(0x00ffffff);
   static const Color clrDisable = Color(0xFFE9E9ED);
   static const Color clrUnselected = Color(0xFF95B8F6);

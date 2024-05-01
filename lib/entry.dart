@@ -49,7 +49,6 @@ class _EntryState extends State<Entry> {
 
   @override
   Widget build(BuildContext context) {
-
     return ScreenUtilInit(
       minTextAdapt: true,
       ensureScreenSize: true,
