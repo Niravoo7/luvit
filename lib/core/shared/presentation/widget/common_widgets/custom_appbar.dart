@@ -14,11 +14,7 @@ class CommonAppBar extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 7),
       child: Row(
         children: [
-          Image.asset(
-            IconConstants.icLocation,
-            width: 28,
-            height: 28,
-          ),
+          Image.asset(IconConstants.icLocation, width: 28, height: 28),
           const SizedBox(width: 7),
           Expanded(
             child: Text(
@@ -28,11 +24,7 @@ class CommonAppBar extends StatelessWidget {
           ),
           const SizedBox(width: 5),
           likeLabel(),
-          Image.asset(
-            IconConstants.icNotification,
-            width: 40,
-            height: 40,
-          ),
+          Image.asset(IconConstants.icNotification, width: 40, height: 40),
         ],
       ),
     );
@@ -47,11 +39,7 @@ class CommonAppBar extends StatelessWidget {
       ),
       child: Row(
         children: [
-          Image.asset(
-            IconConstants.icStar1,
-            height: 20,
-            width: 20,
-          ),
+          Image.asset(IconConstants.icStar1, height: 20, width: 20),
           const SizedBox(width: 5),
           const Text(StringConstants.strValue),
         ],
