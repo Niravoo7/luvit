@@ -35,13 +35,7 @@ class _CarouselSliderStoryState extends State<CarouselSliderStory> {
               options: CarouselOptions(
                 height: MediaQuery.of(context).size.height * 0.7,
                 enlargeCenterPage: true,
-                onPageChanged: (index, reason) async {
-                  // items[index].userModel.late =
-                  //     ValueNotifier<IndicatorAnimationCommand>(
-                  //         IndicatorAnimationCommand.resume);
-                  // loanModel.value = items[index];
-                  // setState(() {});
-                },
+                onPageChanged: (index, reason) async {},
                 enableInfiniteScroll: false,
               ),
               itemCount: homeController.cardDataList.length,
