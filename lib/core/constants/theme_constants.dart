@@ -21,7 +21,7 @@ class ThemeColors {
   static const Color clrWhite50 = Color(0xFFEBF2FF);
   static const Color clrWhite100 = Color(0xFFE2E3E7);
   static const Color clrDivider = Color(0xFFD4D3EA);
-  static const Color clrGrey50 = Color(0xFFA8A8A8);
+  static const Color clrGrey50 = Color(0xFF666666);
   static const Color clrGrey100 = Color(0xFFE6E6E6);
   static const Color clrGrey200 = Color(0xFFF9F9F9);
   static const Color clrGrey300 = Color(0xFFF3F3F3);

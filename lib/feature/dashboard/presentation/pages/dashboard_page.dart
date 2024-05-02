@@ -43,20 +43,38 @@ class DashboardPage extends StatelessWidget {
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: FloatingActionButton(
         backgroundColor:
-            Get.isDarkMode ? const Color(0xff333131) : ThemeColors.clrGrey50,
+            Get.isDarkMode ? ThemeColors.clrGrey50 : ThemeColors.clrGrey50,
         elevation: 0,
         onPressed: () => debugPrint("Add Button pressed"),
-        shape: RoundedRectangleBorder(
-          side: BorderSide(
-            width: 3,
+        child: Container(
+          decoration: BoxDecoration(
+            color: ThemeColors.clrGrey50,
+            border: Border.all(
+              width: 3,
+              color:
+                  Get.isDarkMode ? ThemeColors.clrBlack : ThemeColors.clrWhite,
+            ),
+            borderRadius: BorderRadius.circular(100),
+            gradient: LinearGradient(
+              begin: Alignment.topLeft,
+              stops: const [
+                0.1,
+                0.9,
+              ],
+              colors: [
+                Colors.black.withOpacity(.8),
+                Colors.black.withOpacity(.1),
+              ],
+            ),
+          ),
+          height: 60,
+          width: 60,
+          padding: const EdgeInsets.all(12),
+          child: Image.asset(
+            IconConstants.icStar,
+            height: 24,
             color: Get.isDarkMode ? ThemeColors.clrBlack : ThemeColors.clrWhite,
           ),
-          borderRadius: BorderRadius.circular(100),
-        ),
-        child: Image.asset(
-          IconConstants.icStar,
-          height: 24,
-          color: Get.isDarkMode ? ThemeColors.clrBlack : ThemeColors.clrWhite,
         ),
       ),
       bottomNavigationBar: Theme(
