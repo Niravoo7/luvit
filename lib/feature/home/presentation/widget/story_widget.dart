@@ -1,19 +1,19 @@
 import 'dart:async';
 import 'dart:ui';
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:luvit/core/constants/image_constants.dart';
 import 'package:luvit/core/constants/theme_constants.dart';
-import 'package:luvit/core/library/story_app/lib/story_image.dart';
 import 'package:luvit/core/library/story_app/lib/story_page_view.dart';
 import 'package:luvit/feature/home/domain/entity/card.dart';
 import 'package:luvit/feature/home/presentation/widget/label_widget.dart';
 import 'package:luvit/feature/home/presentation/widget/like_show_widget.dart';
 
-class StoryPage extends StatefulWidget {
-  const StoryPage({
+class StoryWidget extends StatefulWidget {
+  const StoryWidget({
     required this.cardData,
     required this.controller,
     Key? key,
@@ -22,10 +22,10 @@ class StoryPage extends StatefulWidget {
   final CarouselController controller;
 
   @override
-  _StoryPageState createState() => _StoryPageState();
+  _StoryWidgetState createState() => _StoryWidgetState();
 }
 
-class _StoryPageState extends State<StoryPage> {
+class _StoryWidgetState extends State<StoryWidget> {
   ValueNotifier<IndicatorAnimationCommand>? indicatorAnimationController;
 
   @override
@@ -81,22 +81,24 @@ class _StoryPageState extends State<StoryPage> {
                             sigmaY: 10,
                             tileMode: TileMode.decal,
                           ),
-                          child: StoryImage(
-                            key: ValueKey(story ?? ""),
-                            imageProvider: NetworkImage(
-                              story ?? "",
-                            ),
+                          child: CachedNetworkImage(
+                            imageUrl: story,
+                            errorWidget: (context, url, error) {
+                              return const SizedBox();
+                            },
                             fit: BoxFit.cover,
+                            width: double.infinity,
                           ),
                         ),
                       ),
                       Positioned.fill(
-                        child: StoryImage(
-                          key: ValueKey(story ?? ""),
-                          imageProvider: NetworkImage(
-                            story ?? "",
-                          ),
+                        child: CachedNetworkImage(
+                          imageUrl: story,
+                          errorWidget: (context, url, error) {
+                            return const SizedBox();
+                          },
                           fit: BoxFit.fitWidth,
+                          width: double.infinity,
                         ),
                       ),
                       Container(
@@ -137,7 +139,9 @@ class _StoryPageState extends State<StoryPage> {
                 onPageLimitReached: () {
                   // Navigator.pop(context);
                   widget.controller.nextPage(
-                      duration: 300.milliseconds, curve: Curves.easeIn);
+                    duration: 300.milliseconds,
+                    curve: Curves.easeIn,
+                  );
                 },
               ),
             ),
@@ -197,7 +201,7 @@ class _StoryPageState extends State<StoryPage> {
                 ),
               ],
             ),
-          )
+          ),
         ],
       ),
     );

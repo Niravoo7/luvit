@@ -43,6 +43,14 @@ Future<bool> checkInternetConnect() async {
   }
 }
 
+
+bool isBase64(String input) {
+  final RegExp base64Regex =
+  RegExp(r'^data:image\/[a-zA-Z]*;base64,([A-Za-z0-9+/=]*)$');
+  return base64Regex.hasMatch(input);
+}
+
+
 void internetDialogue({
   required String strMessage,
   required Function onCallback,

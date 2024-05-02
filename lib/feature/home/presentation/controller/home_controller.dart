@@ -21,7 +21,6 @@ class HomeController extends GetxController {
     CardDataService().getCardData().onValue.listen((event) {
       final data = event.snapshot.value;
       if (data != null) {
-        debugPrint("getCardUC $data");
         cardDataList
           ..clear()
           ..addAll(parseMapFruitsToList(jsonEncode(data)))

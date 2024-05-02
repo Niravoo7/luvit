@@ -2,17 +2,17 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:luvit/core/library/story_app/lib/story_page_view.dart';
-import 'package:luvit/core/library/story_app/page_story.dart';
 import 'package:luvit/feature/home/presentation/controller/home_controller.dart';
+import 'package:luvit/feature/home/presentation/widget/story_widget.dart';
 
-class CarouselSliderStory extends StatefulWidget {
-  const CarouselSliderStory({super.key});
+class CarouselSliderWidget extends StatefulWidget {
+  const CarouselSliderWidget({super.key});
 
   @override
-  _CarouselSliderStoryState createState() => _CarouselSliderStoryState();
+  _CarouselSliderWidgetState createState() => _CarouselSliderWidgetState();
 }
 
-class _CarouselSliderStoryState extends State<CarouselSliderStory> {
+class _CarouselSliderWidgetState extends State<CarouselSliderWidget> {
   late ValueNotifier<IndicatorAnimationCommand> indicatorAnimationController;
   HomeController homeController = Get.find<HomeController>();
 
@@ -57,7 +57,7 @@ class _CarouselSliderStoryState extends State<CarouselSliderStory> {
                       borderRadius: BorderRadius.circular(20),
                       // color: item.color,
                     ),
-                    child: StoryPage(
+                    child: StoryWidget(
                       controller: controller,
                       cardData: homeController.cardDataList[index],
                     ),
