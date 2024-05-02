@@ -5,6 +5,7 @@ import 'package:carousel_slider/carousel_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:luvit/core/constants/image_constants.dart';
+import 'package:luvit/core/constants/string_constants.dart';
 import 'package:luvit/core/constants/theme_constants.dart';
 import 'package:luvit/core/library/story_app/lib/story_page_view.dart';
 import 'package:luvit/feature/home/domain/entity/card.dart';
@@ -65,6 +66,13 @@ class _StoryWidgetState extends State<StoryWidget> {
                 color: ThemeColors.clrBlack,
                 border: Border.all(color: ThemeColors.clrGrey50),
                 borderRadius: BorderRadius.circular(20),
+              ),
+              child: Center(
+                child: Text(
+                  StringConstants.strNoImagesFound.tr,
+                  style: const TextStyle(fontSize: 24),
+                  textAlign: TextAlign.center,
+                ),
               ),
             )
           else

@@ -9,10 +9,11 @@ class English {
         StringConstants.strChat: 'Chat',
         StringConstants.strProfile: 'Profile',
         StringConstants.strIAmReadyToRecommend:
-            "I'm preparing friends to recommend.",
+            "I'm preparing friends to recommend",
         StringConstants.strEveryDayIWillIntroduceNewFriends:
             'We introduce you to new friends every day',
         StringConstants.strSadGiraffeWithLong:
             'Sad giraffe with long neck new spot',
+        StringConstants.strNoImagesFound: 'No Images Found',
       };
 }

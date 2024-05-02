@@ -12,5 +12,6 @@ class Korean {
         StringConstants.strEveryDayIWillIntroduceNewFriends:
             '매일 새로운 친구들을 소개시켜드려요',
         StringConstants.strSadGiraffeWithLong: '목이길어슬픈기린님의 새로운 스팟',
+        StringConstants.strNoImagesFound: '이미지를 찾을 수 없습니다',
       };
 }

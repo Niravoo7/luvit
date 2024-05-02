@@ -35,7 +35,6 @@ class _CarouselSliderWidgetState extends State<CarouselSliderWidget> {
                 enlargeCenterPage: true,
                 onPageChanged: (index, reason) async {
                   homeController.currentIndex.value = index;
-                  debugPrint("CarouselSliderWidget -> $index");
                 },
                 enableInfiniteScroll: false,
               ),
@@ -52,9 +51,8 @@ class _CarouselSliderWidgetState extends State<CarouselSliderWidget> {
                   child: Container(
                     margin: const EdgeInsets.all(0),
                     clipBehavior: Clip.hardEdge,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                    ),
+                    decoration:
+                        BoxDecoration(borderRadius: BorderRadius.circular(20)),
                     child: StoryWidget(
                       index: realIndex,
                       controller: homeController.controller,

@@ -15,4 +15,5 @@ class StringConstants {
   static const String strEveryDayIWillIntroduceNewFriends =
       'strEveryDayIWillIntroduceNewFriends';
   static const String strSadGiraffeWithLong = 'strSadGiraffeWithLong';
+  static const String strNoImagesFound = 'strNoImagesFound';
 }
