@@ -12,8 +12,8 @@ import 'package:luvit/feature/home/presentation/controller/home_controller.dart'
 import 'package:luvit/feature/home/presentation/widget/label_widget.dart';
 import 'package:luvit/feature/home/presentation/widget/like_show_widget.dart';
 
-class StoryWidget extends StatelessWidget {
-  StoryWidget({
+class StoryWidget extends StatefulWidget {
+  const StoryWidget({
     required this.index,
     required this.cardData,
     required this.controller,
@@ -23,15 +23,39 @@ class StoryWidget extends StatelessWidget {
   final CardData cardData;
   final CarouselController controller;
 
+  @override
+  State<StoryWidget> createState() => _StoryWidgetState();
+}
+
+class _StoryWidgetState extends State<StoryWidget> {
   final HomeController homeController = Get.find<HomeController>();
+
+  ValueNotifier<IndicatorAnimationCommand>? indicatorAnimationController;
+
+  Future<void> onPlay(bool isCurrentIndex) async {
+    if (isCurrentIndex) {
+      if (indicatorAnimationController != null) {
+        indicatorAnimationController!.value = IndicatorAnimationCommand.resume;
+      } else {
+        indicatorAnimationController = ValueNotifier<IndicatorAnimationCommand>(
+          IndicatorAnimationCommand.resume,
+        );
+      }
+    } else {
+      if (indicatorAnimationController != null) {
+        indicatorAnimationController!.value = IndicatorAnimationCommand.pause;
+      } else {
+        indicatorAnimationController = ValueNotifier<IndicatorAnimationCommand>(
+          IndicatorAnimationCommand.pause,
+        );
+      }
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
-    if (index == homeController.currentIndex.value) {
-      homeController.onPlay();
-      debugPrint("CarouselSliderWidget -> $index");
-    }
-    final user = cardData;
+    onPlay(widget.index == homeController.currentIndex.value);
+    final user = widget.cardData;
     return Scaffold(
       body: Stack(
         children: [
@@ -108,8 +132,7 @@ class StoryWidget extends StatelessWidget {
                     ],
                   );
                 },
-                indicatorAnimationController:
-                    homeController.indicatorAnimationController,
+                indicatorAnimationController: indicatorAnimationController,
                 initialStoryIndex: (pageIndex) {
                   if (pageIndex == 0) {
                     return 0;
@@ -119,7 +142,7 @@ class StoryWidget extends StatelessWidget {
                 indicatorVisitedColor: ThemeColors.clrVividPink,
                 pageLength: 1,
                 storyLength: (pageIndex) {
-                  return cardData.images!.length;
+                  return widget.cardData.images!.length;
                 },
                 onPageLimitReached: () {
                   /*controller.nextPage(
