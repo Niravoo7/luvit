@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:get/get.dart';
-import 'package:luvit/core/utils/library/data_connection_checked/data_connection_checker.dart';
+import 'package:luvit/core/library/data_connection_checked/data_connection_checker.dart';
 
 class CheckInternetController extends GetxController {
   RxBool isConnected = false.obs;

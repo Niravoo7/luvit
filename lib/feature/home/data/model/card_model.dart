@@ -2,10 +2,8 @@ import 'dart:convert';
 
 import 'package:luvit/feature/home/domain/entity/card.dart';
 
-List<CardDataModel> cardDataModelsFromJson(String str) =>
-    List<CardDataModel>.from(json.decode(str).map((x) => CardDataModel.fromJson(x)));
-
-CardDataModel cardDataModelFromJson(String str) => CardDataModel.fromJson(json.decode(str));
+CardDataModel cardDataModelFromJson(String str) =>
+    CardDataModel.fromJson(json.decode(str));
 
 String cardDataModelToJson(CardDataModel data) => json.encode(data.toJson());
 

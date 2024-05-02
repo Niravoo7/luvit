@@ -4,7 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:luvit/core/constants/theme_constants.dart';
-import 'package:luvit/core/utils/library/basic_utils/basic_utils.dart';
+import 'package:luvit/core/library/basic_utils/basic_utils.dart';
 
 /// Showing the toast with custom fields
 Future<void> showToast({

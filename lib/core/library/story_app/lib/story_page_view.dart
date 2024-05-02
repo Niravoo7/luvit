@@ -2,7 +2,7 @@ import 'dart:math';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:luvit/core/dependency/story_app/lib/story_image.dart';
+import 'package:luvit/core/library/story_app/lib/story_image.dart';
 import 'package:provider/provider.dart';
 
 typedef _StoryItemBuilder = Widget Function(
