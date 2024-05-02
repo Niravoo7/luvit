@@ -20,10 +20,11 @@ class CommonAppBar extends StatelessWidget {
           ),
           const SizedBox(width: 7),
           const Expanded(
-              child: Text(
-            StringConstants.strSadGiraffeWithLong,
-            style: TextStyle(fontSize: 12),
-          )),
+            child: Text(
+              StringConstants.strSadGiraffeWithLong,
+              style: TextStyle(fontSize: 12),
+            ),
+          ),
           const SizedBox(width: 5),
           likeLabel(),
           Image.asset(

@@ -19,28 +19,28 @@ enum IndicatorAnimationCommand { pause, resume }
 ///
 /// [itemBuilder], [storyLength], [pageLength] are required.
 class StoryPageView extends StatefulWidget {
-  const StoryPageView(
-      {Key? key,
-      required this.itemBuilder,
-      required this.storyLength,
-      required this.pageLength,
-      this.gestureItemBuilder,
-      this.initialStoryIndex,
-      this.initialPage = 0,
-      this.onPageLimitReached,
-      this.indicatorDuration = const Duration(seconds: 5),
-      this.indicatorPadding =
-          const EdgeInsets.symmetric(vertical: 32, horizontal: 8),
-      this.backgroundColor = Colors.black,
-      this.indicatorAnimationController,
-      this.onPageChanged,
-      this.indicatorVisitedColor = Colors.white,
-      this.indicatorUnvisitedColor = Colors.grey,
-      this.indicatorHeight = 2,
-      this.showShadow = false,
-      required this.onTapArrowDown,
-      this.isDescriptionShow = false})
-      : super(key: key);
+  const StoryPageView({
+    required this.itemBuilder,
+    required this.storyLength,
+    required this.pageLength,
+    required this.onTapArrowDown,
+    Key? key,
+    this.gestureItemBuilder,
+    this.initialStoryIndex,
+    this.initialPage = 0,
+    this.onPageLimitReached,
+    this.indicatorDuration = const Duration(seconds: 5),
+    this.indicatorPadding =
+        const EdgeInsets.symmetric(vertical: 32, horizontal: 8),
+    this.backgroundColor = Colors.black,
+    this.indicatorAnimationController,
+    this.onPageChanged,
+    this.indicatorVisitedColor = Colors.white,
+    this.indicatorUnvisitedColor = Colors.grey,
+    this.indicatorHeight = 2,
+    this.showShadow = false,
+    this.isDescriptionShow = false,
+  }) : super(key: key);
 
   ///  visited color of [_Indicators]
   final Color indicatorVisitedColor;
@@ -131,15 +131,15 @@ class _StoryPageViewState extends State<StoryPageView> {
         onPageChanged: widget.onPageChanged,
         itemBuilder: (context, index) {
           final isLeaving = (index - currentPageValue) <= 0;
-          final t = (index - currentPageValue);
+          final t = index - currentPageValue;
           final rotationY = lerpDouble(0, 30, t as double)!;
-          final maxOpacity = 0.8;
+          const maxOpacity = 0.8;
           final num opacity =
               lerpDouble(0, maxOpacity, t.abs())!.clamp(0.0, maxOpacity);
           final isPaging = opacity != maxOpacity;
-          final transform = Matrix4.identity();
-          transform.setEntry(3, 2, 0.003);
-          transform.rotateY(-rotationY * (pi / 180.0));
+          final transform = Matrix4.identity()
+            ..setEntry(3, 2, 0.003)
+            ..rotateY(-rotationY * (pi / 180.0));
           return Transform(
             alignment: isLeaving ? Alignment.centerRight : Alignment.centerLeft,
             transform: transform,
@@ -175,9 +175,7 @@ class _StoryPageViewState extends State<StoryPageView> {
                   Positioned.fill(
                     child: Opacity(
                       opacity: opacity as double,
-                      child: ColoredBox(
-                        color: Colors.black87,
-                      ),
+                      child: const ColoredBox(color: Colors.black87),
                     ),
                   ),
                 Column(
@@ -206,7 +204,6 @@ class _StoryPageViewState extends State<StoryPageView> {
 
 class _StoryPageBuilder extends StatefulWidget {
   const _StoryPageBuilder._({
-    Key? key,
     required this.storyLength,
     required this.initialStoryIndex,
     required this.pageIndex,
@@ -221,6 +218,7 @@ class _StoryPageBuilder extends StatefulWidget {
     required this.indicatorVisitedColor,
     required this.indicatorHeight,
     required this.showShadow,
+    Key? key,
   }) : super(key: key);
   final int storyLength;
   final int initialStoryIndex;
@@ -247,7 +245,6 @@ class _StoryPageBuilder extends StatefulWidget {
     required bool isPaging,
     required VoidCallback? onPageLimitReached,
     required _StoryItemBuilder itemBuilder,
-    _StoryItemBuilder? gestureItemBuilder,
     required Duration indicatorDuration,
     required EdgeInsetsGeometry indicatorPadding,
     required ValueNotifier<IndicatorAnimationCommand>?
@@ -256,6 +253,7 @@ class _StoryPageBuilder extends StatefulWidget {
     required Color indicatorUnvisitedColor,
     required double indicatorHeight,
     required bool showShadow,
+    _StoryItemBuilder? gestureItemBuilder,
   }) {
     return MultiProvider(
       providers: [
@@ -380,7 +378,6 @@ class _StoryPageBuilderState extends State<_StoryPageBuilder>
   Widget build(BuildContext context) {
     super.build(context);
     return Stack(
-      fit: StackFit.loose,
       alignment: Alignment.topLeft,
       children: [
         Positioned.fill(
@@ -441,8 +438,8 @@ class _StoryPageBuilderState extends State<_StoryPageBuilder>
 
 class _Gestures extends StatelessWidget {
   const _Gestures({
-    Key? key,
     required this.animationController,
+    Key? key,
   }) : super(key: key);
 
   final AnimationController? animationController;
@@ -519,7 +516,6 @@ class _Gestures extends StatelessWidget {
 
 class _Indicators extends StatefulWidget {
   const _Indicators({
-    Key? key,
     required this.animationController,
     required this.storyLength,
     required this.isCurrentPage,
@@ -529,6 +525,7 @@ class _Indicators extends StatefulWidget {
     required this.indicatorVisitedColor,
     required this.indicatorHeight,
     required this.indicatorAnimationController,
+    Key? key,
   }) : super(key: key);
   final int storyLength;
   final AnimationController? animationController;
@@ -562,8 +559,8 @@ class _IndicatorsState extends State<_Indicators> {
 
   @override
   Widget build(BuildContext context) {
-    final int currentStoryIndex = context.watch<_StoryStackController>().value;
-    final bool isStoryEnded = context.watch<_StoryLimitController>().value;
+    final currentStoryIndex = context.watch<_StoryStackController>().value;
+    final isStoryEnded = context.watch<_StoryLimitController>().value;
     if (!widget.isCurrentPage && widget.isPaging) {
       widget.animationController!.stop();
     }
@@ -610,12 +607,12 @@ class _IndicatorsState extends State<_Indicators> {
 
 class _Indicator extends StatelessWidget {
   const _Indicator({
-    Key? key,
     required this.index,
     required this.value,
     required this.indicatorVisitedColor,
     required this.indicatorUnvisitedColor,
     required this.indicatorHeight,
+    Key? key,
   }) : super(key: key);
   final int index;
   final double value;

@@ -3,8 +3,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:luvit/core/constants/theme_constants.dart';
-import 'package:luvit/core/utils/generic_enums.dart';
 import 'package:luvit/core/library/basic_utils/basic_utils.dart';
+import 'package:luvit/core/utils/generic_enums.dart';
 
 class CommonTextField extends StatefulWidget {
   const CommonTextField({

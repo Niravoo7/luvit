@@ -74,7 +74,7 @@ class _StoryImageState extends State<StoryImage> {
       },
     );
     widget.imageProvider
-        .resolve(ImageConfiguration())
+        .resolve(const ImageConfiguration())
         .addListener(imageStreamListener);
   }
 
