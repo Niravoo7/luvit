@@ -57,6 +57,10 @@ class ThemeColors {
   static const Color clrApricotOrange = Color(0xffF1A674);
   static const Color clrMidnightBlue = Color(0xff24292F);
   static const Color clrGunmetalGray = Color(0xff696E75);
+  static const Color clrDarkGray = Color(0xffADADAD);
+  static const Color clrVividPink = Color(0xffFF006B);
+  static const Color clrGray10 = Color(0xff1A1A1A);
+  static const Color clrCombinePureWhite = Color(0xff3A3A3A);
 }
 
 class ThemeFonts {

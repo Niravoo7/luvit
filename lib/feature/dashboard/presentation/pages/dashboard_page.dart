@@ -6,6 +6,7 @@ import 'package:luvit/core/constants/theme_constants.dart';
 import 'package:luvit/feature/chat/presentation/chat_page.dart';
 import 'package:luvit/feature/dashboard/presentation/controller/dashboard_controller.dart';
 import 'package:luvit/feature/home/presentation/pages/home_page.dart';
+import 'package:luvit/feature/home/presentation/widget/common_app_bar.dart';
 import 'package:luvit/feature/profile/presentation/profile_page.dart';
 import 'package:luvit/feature/spot/presentation/spot_page.dart';
 
@@ -27,6 +28,7 @@ class DashboardPage extends StatelessWidget {
       body: SafeArea(
         child: Column(
           children: [
+            const CommonAppBar(),
             Expanded(
               child: Obx(
                 () => IndexedStack(

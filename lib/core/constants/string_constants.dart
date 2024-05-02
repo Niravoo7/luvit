@@ -10,4 +10,7 @@ class StringConstants {
   static const String strSpot = 'strSpot';
   static const String strChat = 'strChat';
   static const String strProfile = 'strProfile';
+  static const String strIAmReadyToRecommend = 'I am ready to recommend';
+  static const String strEveryDayIWillIntroduceNewFriends =
+      'Every day I will introduce new friends';
 }

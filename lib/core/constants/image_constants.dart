@@ -12,6 +12,9 @@ class IconConstants {
   static const String icHome = '$rootIcon/ic_home.webp';
   static const String icProfile = '$rootIcon/ic_profile.webp';
   static const String icSpot = '$rootIcon/ic_spot.webp';
+  static const String icLikes = '$rootIcon/ic_likes.webp';
+  static const String icStarLike = '$rootIcon/ic_star_like.webp';
+  static const String icLocation = '$rootIcon/ic_location.webp';
 }
 
 /// Flag Constants
