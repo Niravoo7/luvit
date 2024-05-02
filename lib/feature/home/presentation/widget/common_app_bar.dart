@@ -13,7 +13,12 @@ class CommonAppBar extends StatelessWidget {
           width: 28,
           height: 28,
         ),
-        Text("목이길어슬픈기린님의 새로운 스팟")
+        const Text("목이길어슬픈기린님의 새로운 스팟"),
+        Image.asset(
+          IconConstants.icNotification,
+          width: 40,
+          height: 40,
+        )
       ],
     );
   }

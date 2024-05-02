@@ -15,6 +15,7 @@ class IconConstants {
   static const String icLikes = '$rootIcon/ic_likes.webp';
   static const String icStarLike = '$rootIcon/ic_star_like.webp';
   static const String icLocation = '$rootIcon/ic_location.webp';
+  static const String icNotification = '$rootIcon/ic_notification.webp';
 }
 
 /// Flag Constants
