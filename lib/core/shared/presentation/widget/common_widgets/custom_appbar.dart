@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:luvit/core/constants/image_constants.dart';
 import 'package:luvit/core/constants/string_constants.dart';
 import 'package:luvit/core/constants/theme_constants.dart';
@@ -19,10 +20,10 @@ class CommonAppBar extends StatelessWidget {
             height: 28,
           ),
           const SizedBox(width: 7),
-          const Expanded(
+          Expanded(
             child: Text(
-              StringConstants.strSadGiraffeWithLong,
-              style: TextStyle(fontSize: 12),
+              StringConstants.strSadGiraffeWithLong.tr,
+              style: const TextStyle(fontSize: 12),
             ),
           ),
           const SizedBox(width: 5),

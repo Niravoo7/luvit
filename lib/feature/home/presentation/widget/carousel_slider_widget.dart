@@ -24,18 +24,19 @@ class _CarouselSliderWidgetState extends State<CarouselSliderWidget> {
     );
   }
 
-  CarouselController controller = CarouselController();
-
   @override
   Widget build(BuildContext context) {
     return Obx(() {
       return homeController.cardDataList.isNotEmpty
           ? CarouselSlider.builder(
-              carouselController: controller,
+              carouselController: homeController.controller,
               options: CarouselOptions(
                 height: MediaQuery.of(context).size.height * 0.7,
                 enlargeCenterPage: true,
-                onPageChanged: (index, reason) async {},
+                onPageChanged: (index, reason) async {
+                  homeController.currentIndex.value = index;
+                  debugPrint("CarouselSliderWidget -> $index");
+                },
                 enableInfiniteScroll: false,
               ),
               itemCount: homeController.cardDataList.length,
@@ -45,20 +46,18 @@ class _CarouselSliderWidgetState extends State<CarouselSliderWidget> {
                   direction: DismissDirection.down,
                   onDismissed: (direction) {
                     homeController.cardDataList.removeAt(index);
-                    setState(() {});
+                    homeController.cardDataList.refresh();
                   },
-                  background: Container(
-                    color: Colors.transparent,
-                  ),
+                  background: Container(color: Colors.transparent),
                   child: Container(
                     margin: const EdgeInsets.all(0),
                     clipBehavior: Clip.hardEdge,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
-                      // color: item.color,
                     ),
                     child: StoryWidget(
-                      controller: controller,
+                      index: realIndex,
+                      controller: homeController.controller,
                       cardData: homeController.cardDataList[index],
                     ),
                   ),

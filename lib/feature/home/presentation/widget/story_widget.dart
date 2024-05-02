@@ -1,4 +1,3 @@
-import 'dart:async';
 import 'dart:ui';
 
 import 'package:cached_network_image/cached_network_image.dart';
@@ -9,46 +8,30 @@ import 'package:luvit/core/constants/image_constants.dart';
 import 'package:luvit/core/constants/theme_constants.dart';
 import 'package:luvit/core/library/story_app/lib/story_page_view.dart';
 import 'package:luvit/feature/home/domain/entity/card.dart';
+import 'package:luvit/feature/home/presentation/controller/home_controller.dart';
 import 'package:luvit/feature/home/presentation/widget/label_widget.dart';
 import 'package:luvit/feature/home/presentation/widget/like_show_widget.dart';
 
-class StoryWidget extends StatefulWidget {
-  const StoryWidget({
+class StoryWidget extends StatelessWidget {
+  StoryWidget({
+    required this.index,
     required this.cardData,
     required this.controller,
     Key? key,
   }) : super(key: key);
+  final int index;
   final CardData cardData;
   final CarouselController controller;
 
-  @override
-  _StoryWidgetState createState() => _StoryWidgetState();
-}
-
-class _StoryWidgetState extends State<StoryWidget> {
-  ValueNotifier<IndicatorAnimationCommand>? indicatorAnimationController;
-
-  @override
-  void initState() {
-    super.initState();
-    onPlay();
-  }
-
-  Future<void> onPlay() async {
-    if (indicatorAnimationController != null) {
-      indicatorAnimationController!.value = IndicatorAnimationCommand.resume;
-    } else {
-      indicatorAnimationController = ValueNotifier<IndicatorAnimationCommand>(
-        IndicatorAnimationCommand.resume,
-      );
-    }
-  }
-
-  RxBool isDescriptionShow = false.obs;
+  final HomeController homeController = Get.find<HomeController>();
 
   @override
   Widget build(BuildContext context) {
-    final user = widget.cardData;
+    if (index == homeController.currentIndex.value) {
+      homeController.onPlay();
+      debugPrint("CarouselSliderWidget -> $index");
+    }
+    final user = cardData;
     return Scaffold(
       body: Stack(
         children: [
@@ -64,9 +47,10 @@ class _StoryWidgetState extends State<StoryWidget> {
             Obx(
               () => StoryPageView(
                 onTapArrowDown: () {
-                  isDescriptionShow.value = !isDescriptionShow.value;
+                  homeController.isDescriptionShow.value =
+                      !homeController.isDescriptionShow.value;
                 },
-                isDescriptionShow: isDescriptionShow.value,
+                isDescriptionShow: homeController.isDescriptionShow.value,
                 itemBuilder: (context, pageIndex, storyIndex) {
                   final story = user.images![storyIndex];
                   return Stack(
@@ -124,7 +108,8 @@ class _StoryWidgetState extends State<StoryWidget> {
                     ],
                   );
                 },
-                indicatorAnimationController: indicatorAnimationController,
+                indicatorAnimationController:
+                    homeController.indicatorAnimationController,
                 initialStoryIndex: (pageIndex) {
                   if (pageIndex == 0) {
                     return 0;
@@ -134,14 +119,13 @@ class _StoryWidgetState extends State<StoryWidget> {
                 indicatorVisitedColor: ThemeColors.clrVividPink,
                 pageLength: 1,
                 storyLength: (pageIndex) {
-                  return widget.cardData.images!.length;
+                  return cardData.images!.length;
                 },
                 onPageLimitReached: () {
-                  // Navigator.pop(context);
-                  widget.controller.nextPage(
+                  /*controller.nextPage(
                     duration: 300.milliseconds,
                     curve: Curves.easeIn,
-                  );
+                  );*/
                 },
               ),
             ),
@@ -182,7 +166,7 @@ class _StoryWidgetState extends State<StoryWidget> {
                             ),
                           ),
                           Obx(() {
-                            if (isDescriptionShow.value) {
+                            if (homeController.isDescriptionShow.value) {
                               return LabelWidget(
                                 labels: user.tags ?? [],
                               );
