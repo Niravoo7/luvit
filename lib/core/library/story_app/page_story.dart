@@ -177,10 +177,14 @@ class _StoryPageState extends State<StoryPage> {
                               ),
                             ),
                           ),
-                          if (isDescriptionShow.value)
-                            LabelWidget(
-                              labels: user.tags ?? [],
-                            ),
+                          Obx(() {
+                            if (isDescriptionShow.value) {
+                              return LabelWidget(
+                                labels: user.tags ?? [],
+                              );
+                            }
+                            return const SizedBox();
+                          }),
                         ],
                       ),
                     ),

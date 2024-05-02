@@ -1,56 +1,59 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:luvit/core/shared/presentation/widget/common_widgets/back_button.dart';
+import 'package:luvit/core/constants/image_constants.dart';
+import 'package:luvit/core/constants/string_constants.dart';
+import 'package:luvit/core/constants/theme_constants.dart';
 
-class CustomAppbar extends StatelessWidget implements PreferredSizeWidget {
-  const CustomAppbar({
-    this.onPressed,
-    this.title,
-    this.leadingColor,
-    this.foregroundColor,
-    this.backgroundColor,
-    this.isBackEnable = true,
-    this.children,
-    this.icon,
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Size get preferredSize => Size.fromHeight(0.065.sh);
-  final Function()? onPressed;
-  final String? title;
-  final bool isBackEnable;
-  final Color? leadingColor;
-  final Color? backgroundColor;
-  final Color? foregroundColor;
-  final List<Widget>? children;
-  final Widget? icon;
+class CommonAppBar extends StatelessWidget {
+  const CommonAppBar({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return AppBar(
-      leading: isBackEnable
-          ? BackButtonCS(
-              onTap: onPressed,
-              color: leadingColor,
-              icon: icon,
-            )
-          : null,
-      elevation: 0,
-      automaticallyImplyLeading: isBackEnable,
-      foregroundColor: foregroundColor,
-      backgroundColor: backgroundColor,
-      centerTitle: true,
-      title: Text(
-        title ?? "",
-        textAlign: TextAlign.center,
-        style: TextStyle(
-          fontSize: 16.sp,
-          color: foregroundColor,
-          fontWeight: FontWeight.bold,
-        ),
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 7),
+      child: Row(
+        children: [
+          Image.asset(
+            IconConstants.icLocation,
+            width: 28,
+            height: 28,
+          ),
+          const SizedBox(width: 7),
+          const Expanded(
+              child: Text(
+            StringConstants.strSadGiraffeWithLong,
+            style: TextStyle(fontSize: 12),
+          )),
+          const SizedBox(width: 5),
+          likeLabel(),
+          Image.asset(
+            IconConstants.icNotification,
+            width: 40,
+            height: 40,
+          ),
+        ],
       ),
-      actions: children,
+    );
+  }
+
+  Widget likeLabel() {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 7),
+      decoration: BoxDecoration(
+        border: Border.all(color: ThemeColors.clrCombinePureWhite),
+        borderRadius: BorderRadius.circular(30),
+      ),
+      child: Row(
+        children: [
+          Image.asset(
+            IconConstants.icStar1,
+            height: 20,
+            width: 20,
+          ),
+          const SizedBox(width: 5),
+          const Text(StringConstants.strValue),
+        ],
+      ),
     );
   }
 }
