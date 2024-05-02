@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:luvit/core/error/failure.dart';
 import 'package:luvit/core/shared/domain/usecases/usecase.dart';
+import 'package:luvit/feature/home/data/model/card_model.dart';
 import 'package:luvit/feature/home/domain/entity/card.dart';
 import 'package:luvit/feature/home/domain/usecases/get_card_data.dart';
 
@@ -18,7 +19,74 @@ class HomeController extends GetxController {
     getCardData();
   }
 
-  Future<void> getCardData() async {
+  void getCardData() {
+    cardDataList.add(
+      CardDataModel.fromJson(const {
+        "images": [
+          "https://domf5oio6qrcr.cloudfront.net/medialibrary/6372/202ebeef-6657-44ec-8fff-28352e1f5999.jpg",
+          "https://cdn.britannica.com/92/13192-050-6644F8C3/bananas-bunch.jpg?w=400&h=300&c=crop",
+          "https://res.cloudinary.com/roundglass/image/upload/v1653327652/rg/collective/media/Banana%20KP_yg3asc.png",
+          "https://www.thedailymeal.com/img/gallery/13-delicious-things-you-can-make-with-bananas/intro-1673458653.sm.webp",
+        ],
+        "name": "changedBanana",
+        "description": "Hi this is fruit. I like you",
+        "likeCount": 40,
+        "location": "busan",
+        "age": 27,
+        "tags": ["nonSmocking", "INTP", "goodSmile", "goodFace"],
+      }),
+    );
+    cardDataList.add(
+      CardDataModel.fromJson(const {
+        "images": [
+          "https://domf5oio6qrcr.cloudfront.net/medialibrary/6372/202ebeef-6657-44ec-8fff-28352e1f5999.jpg",
+          "https://cdn.britannica.com/92/13192-050-6644F8C3/bananas-bunch.jpg?w=400&h=300&c=crop",
+          "https://res.cloudinary.com/roundglass/image/upload/v1653327652/rg/collective/media/Banana%20KP_yg3asc.png",
+          "https://www.thedailymeal.com/img/gallery/13-delicious-things-you-can-make-with-bananas/intro-1673458653.sm.webp",
+        ],
+        "name": "changedBanana",
+        "description": "Hi this is fruit. I like you",
+        "likeCount": 40,
+        "location": "busan",
+        "age": 27,
+        "tags": ["nonSmocking", "INTP", "goodSmile", "goodFace"],
+      }),
+    );
+    cardDataList.add(
+      CardDataModel.fromJson(const {
+        "images": [
+          "https://domf5oio6qrcr.cloudfront.net/medialibrary/6372/202ebeef-6657-44ec-8fff-28352e1f5999.jpg",
+          "https://cdn.britannica.com/92/13192-050-6644F8C3/bananas-bunch.jpg?w=400&h=300&c=crop",
+          "https://res.cloudinary.com/roundglass/image/upload/v1653327652/rg/collective/media/Banana%20KP_yg3asc.png",
+          "https://www.thedailymeal.com/img/gallery/13-delicious-things-you-can-make-with-bananas/intro-1673458653.sm.webp",
+        ],
+        "name": "changedBanana",
+        "description": "Hi this is fruit. I like you",
+        "likeCount": 40,
+        "location": "busan",
+        "age": 27,
+        "tags": ["nonSmocking", "INTP", "goodSmile", "goodFace"],
+      }),
+    );
+    cardDataList.add(
+      CardDataModel.fromJson(const {
+        "images": [
+          "https://domf5oio6qrcr.cloudfront.net/medialibrary/6372/202ebeef-6657-44ec-8fff-28352e1f5999.jpg",
+          "https://cdn.britannica.com/92/13192-050-6644F8C3/bananas-bunch.jpg?w=400&h=300&c=crop",
+          "https://res.cloudinary.com/roundglass/image/upload/v1653327652/rg/collective/media/Banana%20KP_yg3asc.png",
+          "https://www.thedailymeal.com/img/gallery/13-delicious-things-you-can-make-with-bananas/intro-1673458653.sm.webp",
+        ],
+        "name": "changedBanana",
+        "description": "Hi this is fruit. I like you",
+        "likeCount": 40,
+        "location": "busan",
+        "age": 27,
+        "tags": ["nonSmocking", "INTP", "goodSmile", "goodFace"],
+      }),
+    );
+  }
+
+/*Future<void> getCardData() async {
     final getCardFailedOrSuccess = await getCardUC(NoParams());
     getCardFailedOrSuccess.fold(
       (left) {
@@ -40,5 +108,5 @@ class HomeController extends GetxController {
         debugPrint("cardDataList -> ${cardDataList.length}");
       },
     );
-  }
+  }*/
 }

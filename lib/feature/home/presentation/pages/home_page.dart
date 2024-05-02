@@ -24,7 +24,7 @@ class HomePage extends StatelessWidget {
                 }
               }
             });*/
-            await homeController.getCardData();
+            //await homeController.getCardData();
           },
           child: Container(
             color: ThemeColors.clrTransparent,
